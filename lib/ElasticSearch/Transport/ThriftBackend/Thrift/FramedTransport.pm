@@ -100,8 +100,7 @@ sub read
     }
 
     # Return substr
-    my $out = substr($self->{rBuf}, 0, $len);
-    $self->{rBuf} = substr($self->{rBuf}, $len);
+    my $out = substr($self->{rBuf}, 0, $len,'');
     return $out;
 }
 
