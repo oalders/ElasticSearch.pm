@@ -5,7 +5,7 @@ use warnings FATAL => 'all';
 use ElasticSearch::Transport::ThriftBackend::Rest;
 use ElasticSearch::Transport::ThriftBackend::Thrift;
 use ElasticSearch::Transport::ThriftBackend::Thrift::Socket;
-use ElasticSearch::Transport::ThriftBackend::Thrift::BufferedTransport;
+use ElasticSearch::Transport::ThriftBackend::Thrift::FramedTransport;
 use ElasticSearch::Transport::ThriftBackend::Thrift::BinaryProtocol;
 
 use Encode qw(decode_utf8);
@@ -162,7 +162,7 @@ sub client {
     $socket->setRecvTimeout($timeout);
 
     my $transport
-        = ElasticSearch::Transport::ThriftBackend::Thrift::BufferedTransport
+        = ElasticSearch::Transport::ThriftBackend::Thrift::FramedTransport
         ->new($socket);
     my $protocol
         = ElasticSearch::Transport::ThriftBackend::Thrift::BinaryProtocol
